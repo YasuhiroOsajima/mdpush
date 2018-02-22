@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Client</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  Now waiting...
+
+  <script>
+    var wnames = {};
+    var socket = io('http://<%- server %>:3000', {reconnection: false});
+    //var socket = io('http://192.168.66.13:3000', {reconnection: false});
+
+    socket.on('msg push', function (data) {
+      var wname = data.wname;
+      var ht_doc = data.ht_doc;
+
+      if (wname in wnames) {
+        //found case
+        wnames.wname.document.open();
+        wnames.wname.document.write(ht_doc);
+        wnames.wname.document.close();
+
+      } else {
+        var childWindow = window.open('', wname)
+        childWindow.document.open();
+        childWindow.document.write(ht_doc);
+        childWindow.document.close();
+        childWindow.focus();
+        console.log(childWindow.name);
+
+        wnames.wname = childWindow;
+      }
+    });
+  </script>
+</body>
+</html>
