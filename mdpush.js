@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const ejs = require('ejs');
 const marked = require('marked');
 const fs = require('fs');

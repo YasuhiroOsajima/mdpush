@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
-const ipaddress = '192.168.66.13';
+const ipaddress = '127.0.0.1';
 
 //Set Endpoints
 app.post('/test', (req, res) => {
