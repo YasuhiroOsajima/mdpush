@@ -19,8 +19,8 @@ app.post('/test', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  var template = fs.readFileSync('./index.ejs', 'utf-8');
-  var index = ejs.render(template, {server: ipaddress});
+  const template = fs.readFileSync('./index.ejs', 'utf-8');
+  const index = ejs.render(template, {server: ipaddress});
 
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.write(index);
